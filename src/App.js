@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { configureStore } from "@reduxjs/toolkit";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const counterReducer = (state = { counter: 0 }, action) => {
+  if (action.type === "increment") {
+    return {
+      counter: state.counter + 1,
+    };
+  }
+
+  if (action.type === "decrement") {
+    return {
+      counter: state.counter - 1,
+    };
+  }
+  return state;
+};
+
+const store = configureStore({
+  reducer: counterReducer,
+});
+
+const counterSubscriber = () => {
+  const latestState = store.getState();
+  console.log("LatestState", latestState);
+};
+
+store.subscribe(counterSubscriber);
+
+store.dispatch({ type: "increment" });
+store.dispatch({ type: "decrement" });
+
+const App = () => {
+  return <div style={{ marginTop: 20 }}>REDUX</div>;
+};
 
 export default App;
