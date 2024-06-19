@@ -1,18 +1,15 @@
 import { useSelector } from "react-redux";
-import Counter from "./components/Counter";
-import Header from "./components/Header";
-import Auth from "./components/Auth";
-import UserProfile from "./components/UserProfile";
+import Cart from "./components/Cart/Cart";
+import Layout from "./components/Layout/Layout";
+import Products from "./components/Shop/Products";
 
 function App() {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
+  const isCart = useSelector((state) => state.cart.isCart);
   return (
-    <>
-      <Header />
-      {isAuthenticated ? <UserProfile /> : <Auth />}
-      <Counter />
-    </>
+    <Layout>
+      {isCart && <Cart />}
+      <Products />
+    </Layout>
   );
 }
 
