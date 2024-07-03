@@ -3,7 +3,7 @@ import classes from "./CartItem.module.css";
 import {
   addItemToCart,
   removeItemFromCart,
-} from "../../store/reducer/cart-slice";
+} from "../../store/cart-slice";
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
